@@ -1,0 +1,88 @@
+/* * App Global CSS * ---------------------------------------------------------------------------- * Put style rules here that you want to apply globally. These styles are for * the entire app and not just one component. Additionally, this file can be * used as an entry point to import other CSS/Sass files to be included in the * output CSS. * For more information on global stylesheets, visit the documentation: * https://ionicframework.com/docs/layout/global-stylesheets */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Ionic Dark Mode */
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Custom Global Styles */
+body {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #007bff; /* Texto azul */
+}
+
+/* Encabezado y barra de herramientas */
+ion-header,
+ion-toolbar {
+    --background: #007bff; /* Fondo azul */
+    --color: #ffffff; /* Texto blanco */
+}
+
+/* Contenido */
+ion-content {
+    --background: #ffffff; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+}
+
+/* Botones */
+ion-button {
+    --background: #007bff; /* Fondo azul para los botones */
+    --color: #ffffff; /* Texto blanco */
+}
+
+ion-button:hover {
+    --background: darken(#007bff, 10%);
+}
+
+/* Enlaces */
+a {
+    color: #007bff; /* Enlaces en azul */
+}
+
+a:hover {
+    color: darken(#007bff, 10%);
+}
+
+/* Tarjetas de productos */
+ion-card {
+    --background: #ffffff; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+    border: 1px solid #007bff; /* Borde azul */
+    padding: 10px;
+    margin: 10px 0;
+}
+
+ion-card-title {
+    color: #007bff !important; /* Cambia el color de los títulos */
+}
+
+/* Ítems */
+ion-item {
+    --background: #ffffff; /* Fondo blanco */
+    --color: #007bff; /* Texto azul */
+    border-bottom: 1px solid #007bff; /* Borde inferior azul */
+}
+
+/* Barra de navegación inferior */
+ion-tab-bar {
+    --background: #007bff; /* Fondo azul */
+    --color: #ffffff; /* Texto blanco */
+    --color-selected: #ffffff;
+}
+

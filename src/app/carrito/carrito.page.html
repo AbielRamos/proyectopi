@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito de Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar los productos agrupados por fecha -->
+  <ion-list>
+    <div *ngFor="let pedido of carrito">
+      <ion-item-divider>
+        <ion-label>Pedido del {{ pedido.fecha }}</ion-label>
+      </ion-item-divider>
+
+      <!-- Productos de este pedido -->
+      <ion-item *ngFor="let item of pedido.productos">
+        <ion-thumbnail slot="start">
+          <img [src]="item.image">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.nombre }}</h2>
+          <p>{{ item.precio | currency }} x {{ item.cantidad }}</p>
+        </ion-label>
+
+        <ion-buttons slot="end">
+          <ion-button (click)="actualizarCantidad(item, 'decrementar')" color="light">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+          </ion-button>
+          <ion-input [(ngModel)]="item.cantidad" type="number" readonly></ion-input>
+          <ion-button (click)="actualizarCantidad(item, 'incrementar')" color="primary">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" (click)="eliminarItem(item)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <!-- Mostrar el último producto agregado y la cantidad en grande -->
+  <ion-item lines="none" class="resumen-producto">
+    <ion-label>
+      <h1>{{ ultimoProducto }}</h1>
+      <h2>Cantidad: {{ cantidadUltimoProducto }}</h2>
+    </ion-label>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>Total: {{ total | currency }}</ion-label>
+  </ion-item>
+
+  <!-- Ajustamos los botones para que sean más pequeños y estén mejor alineados -->
+  <ion-button expand="block" (click)="pedir()" size="small" color="primary" style="margin-bottom: 10px;">
+    Pedir
+  </ion-button>
+  <ion-button expand="block" color="danger" (click)="vaciarCanasta()" size="small">
+    Vaciar Canasta
+  </ion-button>
+</ion-content>
+
+
