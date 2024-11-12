@@ -1,21 +1,28 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+import { Router } from '@angular/router';
 
-import { AppComponent } from './app.component';
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+})
+export class AppComponent {
+  rootPage: any = 'LoginPage';
 
-describe('AppComponent', () => {
+  constructor(private router: Router, private platform: Platform) {
+    this.initializeApp();
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    }).compileComponents();
-  });
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Aquí puedes añadir cualquier inicialización adicional que necesites
+    });
+  }
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  shouldShowMenu(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute !== '/login'; 
+  }
+}
 
-});

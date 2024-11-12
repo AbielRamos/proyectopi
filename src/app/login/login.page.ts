@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +11,6 @@ export class LoginPage {
   username: string = '';
   password: string = '';
 
-  // Define un array de usuarios válidos
   private validUsers = [
     { username: 'abiel', password: '123456' },
     { username: 'manuel', password: '123456' },
@@ -18,22 +18,21 @@ export class LoginPage {
     { username: 'majo', password: '123456' }
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navCtrl: NavController) {}
 
   login() {
-    // Validar las credenciales
-    const user = this.validUsers.find(
-      (u) => u.username === this.username && u.password === this.password
-    );
-
+    const user = this.validUsers.find(u => u.username === this.username && u.password === this.password);
     if (user) {
-      // Si las credenciales son válidas, navegar a la página de inicio
-      this.router.navigate(['/explorar']); // Cambia esto a la ruta de inicio deseada
+      // Guardar el token de autenticación en localStorage
+      localStorage.setItem('token', 'user-token');
+      this.navCtrl.navigateRoot('/tabs');
     } else {
-      // Si las credenciales no son válidas, mostrar un mensaje de error
-      console.error('Credenciales inválidas');
-      alert('Credenciales inválidas. Inténtalo de nuevo.');
+      alert('Credenciales incorrectas. Por favor, inténtelo de nuevo.');
     }
   }
 }
+
+
+
+
 

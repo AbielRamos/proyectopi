@@ -1,49 +1,69 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../producto/product.model';
+import { Pedido } from '../models/pedido.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
-  carrito: { fecha: string, productos: Producto[] }[] = [];
+  private carrito: Pedido[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  // Añadir producto al carrito
   addToCarrito(producto: Producto) {
-    const hoy = new Date().toLocaleDateString(); // Obtener la fecha de hoy como cadena
+    const fechaHoy = new Date().toISOString().split('T')[0];
+    let pedidoActual = this.carrito.find(pedido => pedido.fecha === fechaHoy);
 
-    // Buscar si hay un pedido en la fecha actual
-    let pedidoDelDia = this.carrito.find(p => p.fecha === hoy);
-
-    // Si ya hay un pedido para el día actual
-    if (pedidoDelDia) {
-      // Verificar si el producto ya está en el carrito
-      const productoExistente = pedidoDelDia.productos.find(p => p.nombre === producto.nombre);
-
-      if (productoExistente) {
-        productoExistente.cantidad! += 1;  // Si ya está, incrementar la cantidad
-      } else {
-        pedidoDelDia.productos.push({ ...producto, cantidad: 1 });  // Si no está, añadir al array
-      }
-    } else {
-      // Si no hay un pedido para hoy, crear uno nuevo
-      this.carrito.push({
-        fecha: hoy,
-        productos: [{ ...producto, cantidad: 1 }]
-      });
+    if (!pedidoActual) {
+      pedidoActual = { fecha: fechaHoy, productos: [], total: 0 };
+      this.carrito.push(pedidoActual);
     }
+
+    const itemExistente = pedidoActual.productos.find(item => item.nombre === producto.nombre);
+
+    if (itemExistente) {
+      itemExistente.cantidad += producto.cantidad || 1;
+    } else {
+      pedidoActual.productos.push({ ...producto, cantidad: producto.cantidad || 1 });
+    }
+
+    this.actualizarTotal();
   }
 
-  // Obtener el carrito
-  getCarrito() {
-    return this.carrito;
+  obtenerCarrito(): Pedido {
+    return this.carrito.length > 0 ? this.carrito[0] : { fecha: '', productos: [], total: 0 };
   }
 
-  // Vaciar carrito
   vaciarCarrito() {
     this.carrito = [];
   }
+
+  actualizarTotal() {
+    this.carrito.forEach(pedido => {
+      pedido.total = pedido.productos.reduce((acc, item) => {
+        return acc + item.precio * item.cantidad;
+      }, 0);
+    });
+  }
+
+  obtenerTotal(): number {
+    return this.carrito.length > 0 ? this.carrito[0].total : 0;
+  }
+
+  agregarPedido(pedido: Pedido) {
+    const existingPedido = this.carrito.find(p => p.fecha === pedido.fecha);
+    if (!existingPedido) {
+      this.carrito.push(pedido);
+    } else {
+      existingPedido.productos = pedido.productos;
+      existingPedido.total = pedido.total;
+    }
+  }
 }
+
+
+
+
+
 
 

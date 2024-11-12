@@ -1,33 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { QRCodeGeneratorService } from '../services/qrcode-generator.service';
-import { Pedido } from '../models/pedido.model'; // Asegúrate de importar tu modelo Pedido
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CarritoService } from '../services/carrito.service';
+import { Pedido } from '../models/pedido.model';
 
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.page.html',
   styleUrls: ['./historial.page.scss'],
 })
-export class HistorialPage implements OnInit {
-  
-  constructor(private qrCodeService: QRCodeGeneratorService) {}
+export class HistorialPage {
+  pedidos: Pedido[] = [];
 
-  ngOnInit() {
-    // Inicialización si es necesario
+  constructor(private router: Router, private carritoService: CarritoService) {
+    const carrito = this.carritoService.obtenerCarrito();
+    this.pedidos = carrito.productos.length > 0 ? [carrito] : [];
   }
 
-  // Método para generar el código QR
-  generarQR(pedido: Pedido) {
-    const qrData = `Pago de ${pedido.total} por los productos: ${pedido.productos.map(p => p.nombre).join(', ')}`;
-    
-    this.qrCodeService.generateQRCode(qrData).then(url => {
-      // Manejar la URL del código QR aquí, por ejemplo, asignándola a una propiedad
-      console.log('Código QR generado:', url);
-      // Aquí puedes usar esta URL para mostrar el QR en tu plantilla, asignándolo a una variable
-    }).catch(err => {
-      // Manejo de errores
-      console.error('Error al generar el QR:', err);
-    });
+  verDetallesPedido(pedido: Pedido) {
+    this.router.navigate(['/mi-pedido', pedido.fecha]);
   }
 }
+
+
+
 
 

@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../producto/product.model';
-import { CarritoService } from '../services/carrito.service';
+
+interface Categoria {
+  name: string;
+  image: string;
+  products: Producto[];
+}
 
 @Component({
   selector: 'app-explorar',
@@ -9,44 +14,92 @@ import { CarritoService } from '../services/carrito.service';
   styleUrls: ['./explorar.page.scss'],
 })
 export class ExplorarPage {
-  bebidas: Producto[] = [
-    { id: 1, nombre: 'Coca-Cola Refresco Sabor Original', precio: 45, image: 'assets/img/coca-cola.jpg' },
-    { id: 2, nombre: 'Pepsi', precio: 40, image: 'assets/img/pepsi.jpg' }
+  categories: Categoria[] = [
+    {
+      name: 'Botanas',
+      image: 'assets/images/botanas.jpg',
+      products: []
+    },
+    {
+      name: 'Galletas',
+      image: 'assets/images/galletas.jpg',
+      products: []
+    },
+    {
+      name: 'Alimentos Instantáneos',
+      image: 'assets/images/alimentos_instantaneos.jpg',
+      products: []
+    },
+    {
+      name: 'Enlatados y Conservas',
+      image: 'assets/images/enlatados.jpg',
+      products: []
+    },
+    {
+      name: 'Lácteos y Derivados',
+      image: 'assets/images/lacteos.jpg',
+      products: []
+    },
+    {
+      name: 'Café',
+      image: 'assets/images/cafe.jpg',
+      products: []
+    },
+    {
+      name: 'Condimentos y Salsas',
+      image: 'assets/images/condimentos.jpg',
+      products: []
+    },
+    {
+      name: 'Arroz, Frijoles y Legumbres',
+      image: 'assets/images/arroz_frijol.jpg',
+      products: []
+    },
+    {
+      name: 'Productos de Limpieza y Aseo',
+      image: 'assets/images/limpieza_personal.jpg',
+      products: [
+]
+    }
   ];
 
-  abarrotes: Producto[] = [
-    { id: 3, nombre: 'Pan Bimbo', precio: 30, image: 'assets/img/pan-bimbo.jpg' },
-    { id: 4, nombre: 'Harina de Trigo', precio: 25, image: 'assets/img/harina-trigo.jpg' }
-  ];
+  constructor(private router: Router) {}
 
-  dulcesYBotanas: Producto[] = [
-    { id: 5, nombre: 'Chocolates Hershey\'s', precio: 50, image: 'assets/img/chocolates-hersheys.jpg' },
-    { id: 6, nombre: 'Papas Sabritas', precio: 20, image: 'assets/img/papas-sabritas.jpg' }
-  ];
-
-  limpieza: Producto[] = [
-    { id: 7, nombre: 'Jabón Líquido', precio: 15, image: 'assets/img/jabon-liquido.jpg' },
-    { id: 8, nombre: 'Cloro', precio: 12, image: 'assets/img/cloro.jpg' }
-  ];
-
-  constructor(private router: Router, private carritoService: CarritoService) {}
-
+  // Función para navegar al carrito
   navigateToCarrito() {
     this.router.navigate(['/carrito']);
   }
 
-  addToCart(producto: Producto) {
-    this.carritoService.addToCarrito(producto);
-    console.log('Producto añadido al carrito', producto);
-  }
-
-  scrollToCategory(categoryId: string) {
-    const element = document.getElementById(categoryId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  // Función para navegar a una página específica de categoría
+  navigateToCategory(category: Categoria) {
+    switch (category.name) {
+      case 'Lácteos y Derivados':
+        this.router.navigate(['/lacteos']);
+        break;
+      case 'Botanas':
+        this.router.navigate(['/botanas']);
+        break;
+      case 'Galletas':
+        this.router.navigate(['/galletas']);
+        break;
+      case 'Alimentos Instantáneos':
+        this.router.navigate(['/alimentos-instantaneos']);
+        break;
+      case 'Enlatados y Conservas':
+        this.router.navigate(['/enlatados']);
+        break;
+      case 'Productos de Limpieza y Aseo':
+        this.router.navigate(['/limpieza']);
+        break;
+      // Agrega más casos para cada categoría según sea necesario
+      default:
+        console.log('Categoría no encontrada');
     }
   }
 }
+
+
+
 
 
 

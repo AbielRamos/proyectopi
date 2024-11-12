@@ -1,0 +1,28 @@
+.date-buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  
+  .date-button {
+    width: 18%;
+    height: 60px;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  ion-list {
+    padding: 10px;
+  }
+  
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    font-size: 16px;
+  }
+  
+  ion-button {
+    margin: 20px 0;
+  }
+  
+  

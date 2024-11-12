@@ -1,10 +1,13 @@
+// models/pedido.model.ts
+export interface Producto {
+  nombre: string;
+  precio: number;
+  cantidad: number;
+  image: string;
+}
+
 export interface Pedido {
-    fecha: string;
-    productos: {
-      nombre: string;
-      cantidad: number;
-      precio: number;
-    }[];
-    total: number;
-  }
-  
+  fecha: string;
+  productos: Producto[];
+  total: number;
+}

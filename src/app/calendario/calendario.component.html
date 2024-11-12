@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Fecha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Días</ion-label>
+    </ion-item-divider>
+    <!-- Lista de días -->
+    <ion-item *ngFor="let dia of dias">
+      <ion-label>{{ dia }}</ion-label>
+      <ion-radio slot="start" [value]="dia" (ionSelect)="seleccionarDia(dia)"></ion-radio>
+    </ion-item>
+
+    <ion-item-divider>
+      <ion-label>Horas</ion-label>
+    </ion-item-divider>
+    <!-- Lista de horas -->
+    <ion-item *ngFor="let hora of horas">
+      <ion-label>{{ hora }}</ion-label>
+      <ion-radio slot="start" [value]="hora" (ionSelect)="seleccionarHora(hora)"></ion-radio>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="success" (click)="continuar()">
+    Continuar
+  </ion-button>
+</ion-content>
+

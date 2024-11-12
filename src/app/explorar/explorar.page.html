@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Hola usuario</ion-title>
+    <ion-title>Abarrotes Velázquez</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="navigateToCarrito()">
         <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
@@ -10,123 +10,20 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-searchbar placeholder="Busca productos"></ion-searchbar>
+  <ion-searchbar placeholder="Buscar producto"></ion-searchbar>
 
   <ion-grid>
-    <ion-row class="category-row" style="overflow-x: auto; white-space: nowrap;">
-      <!-- Botones de categorías -->
-      <ion-col size="auto">
-        <ion-button fill="clear" (click)="scrollToCategory('bebidas')">
-          <ion-icon name="beer-outline"></ion-icon>
-          <ion-label>Bebidas</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button fill="clear" (click)="scrollToCategory('abarrotes')">
-          <ion-icon name="basket-outline"></ion-icon>
-          <ion-label>Abarrotes</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button fill="clear" (click)="scrollToCategory('dulces')">
-          <ion-icon name="ice-cream-outline"></ion-icon>
-          <ion-label>Dulces y botanas</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button fill="clear" (click)="scrollToCategory('limpieza')">
-          <ion-icon name="water-outline"></ion-icon>
-          <ion-label>Limpieza</ion-label>
-        </ion-button>
+    <ion-row>
+      <ion-col size="6" *ngFor="let category of categories">
+        <ion-card (click)="navigateToCategory(category)">
+          <img [src]="category.image" alt="{{ category.name }}" />
+          <ion-card-content>
+            <p class="category-title">{{ category.name }}</p>
+          </ion-card-content>
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- Sección Bebidas -->
-  <ion-card id="bebidas">
-    <ion-card-header>
-      <ion-card-title>Bebidas</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item *ngFor="let producto of bebidas">
-        <ion-thumbnail slot="start">
-          <img [src]="producto.image">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ producto.nombre }}</h2>
-          <p>{{ producto.precio | currency }}</p>
-        </ion-label>
-        <ion-button (click)="addToCart(producto)">
-          <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Sección Abarrotes -->
-  <ion-card id="abarrotes">
-    <ion-card-header>
-      <ion-card-title>Abarrotes</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item *ngFor="let producto of abarrotes">
-        <ion-thumbnail slot="start">
-          <img [src]="producto.image">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ producto.nombre }}</h2>
-          <p>{{ producto.precio | currency }}</p>
-        </ion-label>
-        <ion-button (click)="addToCart(producto)">
-          <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Sección Dulces y botanas -->
-  <ion-card id="dulces">
-    <ion-card-header>
-      <ion-card-title>Dulces y botanas</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item *ngFor="let producto of dulcesYBotanas">
-        <ion-thumbnail slot="start">
-          <img [src]="producto.image">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ producto.nombre }}</h2>
-          <p>{{ producto.precio | currency }}</p>
-        </ion-label>
-        <ion-button (click)="addToCart(producto)">
-          <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- Sección Limpieza -->
-  <ion-card id="limpieza">
-    <ion-card-header>
-      <ion-card-title>Limpieza</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item *ngFor="let producto of limpieza">
-        <ion-thumbnail slot="start">
-          <img [src]="producto.image">
-        </ion-thumbnail>
-        <ion-label>
-          <h2>{{ producto.nombre }}</h2>
-          <p>{{ producto.precio | currency }}</p>
-        </ion-label>
-        <ion-button (click)="addToCart(producto)">
-          <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
 </ion-content>
 
 

@@ -1,9 +1,24 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'com.example.app',
   appName: 'TiendaAbarrotes',
-  webDir: 'www'
+  webDir: 'www',
+  bundledWebRuntime: false,
+  plugins: {
+    SplashScreen: {
+      launchShowDuration: 0
+    },
+    Keyboard: {
+      resize: 'body',
+      style: 'dark',
+      resizeOnFullScreen: true
+    }
+  },
+  ios: {
+    webContentsDebuggingEnabled: true
+  }
 };
 
 export default config;
+
