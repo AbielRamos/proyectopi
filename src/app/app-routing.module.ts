@@ -17,7 +17,9 @@ const routes: Routes = [
   { path: 'alimentos-instantaneos', loadChildren: () => import('./alimentos-instantaneos/alimentos-instantaneos.module').then(m => m.AlimentosInstantaneosPageModule) },
   { path: 'enlatados', loadChildren: () => import('./enlatados/enlatados.module').then(m => m.EnlatadosPageModule) },
   { path: 'calendario', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioPageModule) },
-  { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) }
+  { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
+  { path: 'cafe',loadChildren: () => import('./cafe/cafe.module').then( m => m.CafePageModule)}
+
 ];
 
 @NgModule({

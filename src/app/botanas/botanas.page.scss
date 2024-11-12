@@ -1,0 +1,74 @@
+ion-card {
+    position: relative;
+    text-align: center;
+  }
+  
+  ion-searchbar {
+    z-index: 9999; /* Asegura que esté en el nivel superior */
+    position: relative;
+    
+    --background: #D3D3D3; /* Establece el color de fondo */
+    --color: #333; /* Cambia el color del texto */
+    --placeholder-color: #666666c8; /* Cambia el color del placeholder */
+    border-radius: 10px; /* Bordes redondeados */
+    margin: 11px; /* Espacio alrededor */
+    padding: 10px; /* Relleno interno */
+  }
+  
+  .platform-ios ion-searchbar {
+    margin-top: env(safe-area-inset-top); /* Ajuste para iOS */
+  }
+  
+  ion-searchbar::part(container) {
+    background-color: #D3D3D3; /* Color de fondo interno */
+    border-radius: 10px; /* Bordes redondeados internos */
+  }
+  
+  ion-searchbar::part(input-field) {
+    background-color: #FFFFFF; /* Fondo del campo de entrada */
+    border-radius: 10px; /* Bordes redondeados del campo de entrada */
+  }
+  
+  ion-searchbar:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Sombra al enfocar */
+    outline: none; /* Eliminar contorno predeterminado */
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 150px; /* Ajusta el tamaño según necesites */
+    object-fit: contain; /* Mantiene la proporción de la imagen */
+  }
+  
+  .add-to-cart-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 50px; /* Aumenta el tamaño total del botón */
+    height: 50px;
+    background-color: #0026ff; /* Color del botón */
+    color: #ffffff; /* Color del ícono */
+    border-radius: 50%; /* Forma circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Asegura que el botón esté por encima de otros elementos */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra para darle un efecto de elevación */
+  }
+  
+  /* Cambia el tamaño del icono + */
+  ion-icon.add-icon {
+    font-size: 2rem !important; /* Tamaño del icono */
+  }
+  
+  .product-name {
+    font-size: 1rem !important; /* Tamaño de letra más pequeño */
+    color: #333 !important; /* Color del nombre del producto */
+  }
+  
+  .product-price {
+    font-size: 1.4rem !important; /* Tamaño de letra más grande */
+    font-weight: bold !important; /* Negrita para el precio */
+    color: #007aff !important; /* Color para el precio */
+  }
+  

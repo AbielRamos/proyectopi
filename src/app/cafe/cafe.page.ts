@@ -4,13 +4,11 @@ import { CarritoService } from '../services/carrito.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-botanas',
-  templateUrl: './botanas.page.html',
-  styleUrls: ['./botanas.page.scss'],
+  selector: 'app-cafe',
+  templateUrl: './cafe.page.html',
+  styleUrls: ['./cafe.page.scss'],
 })
-
-
-export class BotanasPage {
+export class CafePage {
   products: Producto[] = [
     { id: 1, nombre: 'Takis Fuego 240g', precio: 51, image: 'assets/img/nutrileche.jpg', cantidad: 1 },
     { id: 2, nombre: 'Takis Fajita 240g', precio: 51, image: 'assets/img/alpura_entera.jpg', cantidad: 1 },
@@ -54,4 +52,3 @@ export class BotanasPage {
     this.router.navigate(['/carrito']);
   }
 }
-
