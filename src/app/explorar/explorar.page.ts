@@ -72,32 +72,40 @@ export class ExplorarPage {
 
   // Función para navegar a una página específica de categoría
   navigateToCategory(category: Categoria) {
-    switch (category.name) {
-      case 'Lácteos y Derivados':
+    const categoryName = category.name.toLowerCase(); // Normaliza a minúsculas
+    switch (categoryName) {
+      case 'lácteos y derivados':
         this.router.navigate(['/lacteos']);
         break;
-      case 'Botanas':
+      case 'botanas':
         this.router.navigate(['/botanas']);
         break;
-      case 'Galletas':
+      case 'galletas':
         this.router.navigate(['/galletas']);
         break;
-      case 'Alimentos Instantáneos':
+      case 'alimentos instantáneos':
         this.router.navigate(['/alimentos-instantaneos']);
         break;
-      case 'Enlatados y Conservas':
+      case 'enlatados y conservas':
         this.router.navigate(['/enlatados']);
         break;
-      case 'Productos de Limpieza y Aseo':
+      case 'productos de limpieza y aseo':
         this.router.navigate(['/limpieza']);
         break;
-      // Agrega más casos para cada categoría según sea necesario
+      case 'café':
+        this.router.navigate(['/cafe']);
+        break;
+      case 'condimentos y salsas':
+        this.router.navigate(['/condimentos']);
+        break;
+      case 'arroz, frijoles y legumbres':
+        this.router.navigate(['/legumbres']);
+        break;
       default:
         console.log('Categoría no encontrada');
     }
-  }
-}
-
+  }   
+}   
 
 
 

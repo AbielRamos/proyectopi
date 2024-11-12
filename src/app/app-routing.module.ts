@@ -21,6 +21,14 @@ const routes: Routes = [
   { path: 'cafe',loadChildren: () => import('./cafe/cafe.module').then( m => m.CafePageModule)},  {
     path: 'condimentos',
     loadChildren: () => import('./condimentos/condimentos.module').then( m => m.CondimentosPageModule)
+  },
+  {
+    path: 'limpieza',
+    loadChildren: () => import('./limpieza/limpieza.module').then( m => m.LimpiezaPageModule)
+  },
+  {
+    path: 'legumbres',
+    loadChildren: () => import('./legumbres/legumbres.module').then( m => m.LegumbresPageModule)
   }
 
 
