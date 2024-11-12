@@ -4,17 +4,17 @@ import { CarritoService } from '../services/carrito.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-enlatados',
-  templateUrl: './enlatados.page.html',
-  styleUrls: ['./enlatados.page.scss'],
+  selector: 'app-condimentos',
+  templateUrl: './condimentos.page.html',
+  styleUrls: ['./condimentos.page.scss'],
 })
-export class EnlatadosPage {
+export class CondimentosPage {
   products: Producto[] = [
-    { id: 1, nombre: 'Atún Dolores Aleta Amarilla en agua 140g', precio: 23, image: 'assets/img/nutrileche.jpg', cantidad: 1 },
-    { id: 2, nombre: 'Atún Dolores Aleta Amarilla en agua 295g', precio: 40, image: 'assets/img/alpura_entera.jpg', cantidad: 1 },
-    { id: 3, nombre: 'Atún Dolores Aleta Amarilla en aceite 140g', precio: 23.5, image: 'assets/img/la_lechera.jpg', cantidad: 1 },
-    { id: 4, nombre: 'Atún Dolores Aleta Amarilla en aceite 295g', precio: 27, image: 'assets/img/lala_entera.jpg', cantidad: 1 },
-    { id: 5, nombre: 'Mayonesa McCormick con limón 390g', precio: 41, image: 'assets/img/alpura_deslactosada.jpg', cantidad: 1 },
+    { id: 1, nombre: 'Mermelada McCormick Fresa 270g', precio: 32, image: 'assets/img/nutrileche.jpg', cantidad: 1 },
+    { id: 2, nombre: 'Kétchup 397g', precio: 28, image: 'assets/img/alpura_entera.jpg', cantidad: 1 },
+    { id: 3, nombre: 'Catsup Clemente 970g', precio: 35, image: 'assets/img/la_lechera.jpg', cantidad: 1 },
+    { id: 4, nombre: 'Catsup Clemente 680g', precio: 27, image: 'assets/img/lala_entera.jpg', cantidad: 1 },
+    { id: 5, nombre: 'Mayonesa McCormick con limón 390g', precio: 48, image: 'assets/img/alpura_deslactosada.jpg', cantidad: 1 },
     { id: 6, nombre: 'Mayonesa McCormick con limón 228g', precio: 32, image: 'assets/img/carnation.jpg', cantidad: 1 },
     { id: 7, nombre: 'Chiles Jalapeños La Costeña en rajas 240g', precio: 15, image: 'assets/img/crema.jpg', cantidad: 1 },
     { id: 8, nombre: 'Chiles Jalapeños La Costeña en rajas 220g', precio: 16, image: 'assets/img/laladeslactosada.jpg', cantidad: 1 },
@@ -48,3 +48,5 @@ export class EnlatadosPage {
     this.router.navigate(['/carrito']);
   }
 }
+
+

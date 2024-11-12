@@ -18,7 +18,11 @@ const routes: Routes = [
   { path: 'enlatados', loadChildren: () => import('./enlatados/enlatados.module').then(m => m.EnlatadosPageModule) },
   { path: 'calendario', loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioPageModule) },
   { path: 'tabs', loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule) },
-  { path: 'cafe',loadChildren: () => import('./cafe/cafe.module').then( m => m.CafePageModule)}
+  { path: 'cafe',loadChildren: () => import('./cafe/cafe.module').then( m => m.CafePageModule)},  {
+    path: 'condimentos',
+    loadChildren: () => import('./condimentos/condimentos.module').then( m => m.CondimentosPageModule)
+  }
+
 
 ];
 

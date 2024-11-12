@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Condimentos y Salsas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToCarrito()">
+        <ion-icon name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="filterProducts($event)" placeholder="Buscar producto"></ion-searchbar>
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let product of filteredProducts">
+        <ion-card>
+          <ion-img [src]="product.image" class="product-image"></ion-img>
+          <ion-card-header>
+            <ion-card-title class="product-name">{{ product.nombre }}</ion-card-title>
+            <p class="product-price">${{ product.precio }}</p>
+          </ion-card-header>
+          <ion-button (click)="addToCart(product)" class="add-to-cart-button" fill="solid">
+            <ion-icon name="add" class="add-icon"></ion-icon>
+          </ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
