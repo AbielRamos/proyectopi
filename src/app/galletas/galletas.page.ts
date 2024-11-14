@@ -11,11 +11,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class GalletasPage {
   products: Producto[] = [
-    { id: 1, nombre: 'Marías Clásicas 177g', precio: 18, image: 'assets/img/nutrileche.jpg', cantidad: 1 },
-    { id: 2, nombre: 'Emperador 109g', precio: 20, image: 'assets/img/alpura_entera.jpg', cantidad: 1 },
-    { id: 3, nombre: 'Chokis Clásicas', precio: 20, image: 'assets/img/la_lechera.jpg', cantidad: 1 },
-    { id: 4, nombre: 'Chokis Rellenas', precio: 20, image: 'assets/img/lala_entera.jpg', cantidad: 1 },
-    { id: 5, nombre: 'Crakets 95g', precio: 20, image: 'assets/img/lala_entera.jpg', cantidad: 1 }
+    { id: 1, nombre: 'Marías Clásicas 177g', precio: 18, image: 'assets/img/MaríasClásicas177g.jpg', cantidad: 1 },
+    { id: 2, nombre: 'Emperador 109g', precio: 20, image: 'assets/img/Emperador109g.jpg', cantidad: 1 },
+    { id: 3, nombre: 'Chokis Clásicas', precio: 20, image: 'assets/img/ChokisClásicas.jpg', cantidad: 1 },
+    { id: 4, nombre: 'Chokis Rellenas', precio: 20, image: 'assets/img/ChokisRellenas.jpg', cantidad: 1 },
+    { id: 5, nombre: 'Crakets 95g', precio: 20, image: 'assets/img/Crakets95g.jpg', cantidad: 1 }
   ];
 
   filteredProducts: Producto[] = [...this.products];
