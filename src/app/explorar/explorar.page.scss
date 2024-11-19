@@ -22,5 +22,23 @@ ion-thumbnail img {
   max-height: 100px;
 }
 
+/* Estilos personalizados para el buscador */
+.custom-searchbar {
+  --background: #f0f0f0; /* Color de fondo */
+  --color: #333; /* Color del texto */
+  --placeholder-color: #888; /* Color del texto del placeholder */
+  --icon-color: #888; /* Color del icono */
+  --border-radius: 10px; /* Bordes redondeados */
+  --padding-start: 10px; /* Espaciado interno */
+
+  input {
+    border: 1px solid #ccc; /* Borde para mejorar la visibilidad */
+  }
+
+  .searchbar-input-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+}
+
   
   

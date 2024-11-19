@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CarritoService } from '../services/carrito.service';
 import { Pedido } from '../models/pedido.model';
 
@@ -9,26 +9,23 @@ import { Pedido } from '../models/pedido.model';
   styleUrls: ['./mi-pedido.page.scss'],
 })
 export class MiPedidoPage implements OnInit {
-  pedido: Pedido = { fecha: '', productos: [], total: 0 };
-  total: number = 0;
+  pedido: Pedido | null = null;
 
-  constructor(private route: ActivatedRoute, private carritoService: CarritoService) {}
+  constructor(private carritoService: CarritoService, private router: Router) {}
 
   ngOnInit() {
-    const fechaHoraSeleccionada: string = this.route.snapshot.paramMap.get('fecha') || '';  // Manejo de valor null
-    const pedidoEncontrado = this.carritoService.obtenerCarrito();
-    if (pedidoEncontrado.fecha === fechaHoraSeleccionada) {
-      this.pedido = pedidoEncontrado;
-      this.actualizarTotal();
-    }
+    this.pedido = this.carritoService.obtenerCarrito();
   }
 
-  actualizarTotal() {
-    this.total = this.pedido.productos.reduce((acc, item) => {
-      return acc + item.precio * item.cantidad;
-    }, 0);
+  aceptar() {
+    if (this.pedido) {
+      this.carritoService.agregarAlHistorial(this.pedido);
+      this.carritoService.vaciarCarrito();
+      this.router.navigate(['/historial']);
+    }
   }
 }
+
 
 
 

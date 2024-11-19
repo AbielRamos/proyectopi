@@ -1,25 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Detalles del Pedido</ion-title>
+    <ion-title>Resumen de Pedido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Pedido: {{ pedido.fecha }}</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let producto of pedido.productos">
-          <ion-label>
-            Producto: {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio: {{ producto.precio | currency }}
-          </ion-label>
-          <ion-img [src]="producto.image" alt="{{ producto.nombre }}" style="width: 50px; height: auto;"></ion-img>
-        </ion-item>
-      </ion-list>
-      <p>Total: {{ total | currency }}</p>
-    </ion-card-content>
-  </ion-card>
-</ion-content>
+  <div *ngIf="pedido; else noPedido">
+    <h2>Fecha y Hora:</h2>
+    <p>{{ pedido.fecha }}</p>
 
+    <h2>Productos:</h2>
+    <ion-list>
+      <ion-item *ngFor="let producto of pedido.productos">
+        {{ producto.nombre }} - {{ producto.cantidad }} x ${{ producto.precio }}
+      </ion-item>
+    </ion-list>
+
+    <h2>Total: ${{ pedido.total }}</h2>
+    <ion-button expand="full" (click)="aceptar()">Aceptar</ion-button>
+  </div>
+
+  <ng-template #noPedido>
+    <p>No hay un pedido disponible.</p>
+  </ng-template>
+</ion-content>

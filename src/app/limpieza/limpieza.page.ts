@@ -10,12 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LimpiezaPage {
   products: Producto[] = [
-    { id: 1, nombre: 'Pétalo 4 rollos', precio: 20, image: 'assets/img/nutrileche.jpg', cantidad: 1 },
-    { id: 2, nombre: 'Suavel 4 rollos', precio: 51, image: 'assets/img/alpura_entera.jpg', cantidad: 1 },
-    { id: 3, nombre: 'Salvo Lava Trastes 1.2L', precio: 77, image: 'assets/img/la_lechera.jpg', cantidad: 1 },
-    { id: 4, nombre: 'Roma Jabón en polvo 1kg', precio: 30, image: 'assets/img/lala_entera.jpg', cantidad: 1 },
-    { id: 5, nombre: 'Foca Jabón en polvo 1kg', precio: 34, image: 'assets/img/alpura_deslactosada.jpg', cantidad: 1 },
-    { id: 6, nombre: 'Raid Insecticida 400ml', precio: 79, image: 'assets/img/carnation.jpg', cantidad: 1 }
+    { id: 1, nombre: 'Pétalo 4 rollos', precio: 20, image: 'assets/img/Pétalo4rollos.jpg', cantidad: 1 },
+    { id: 2, nombre: 'Suavel 4 rollos', precio: 51, image: 'assets/img/Suavel 4 rollos.jpg', cantidad: 1 },
+    { id: 3, nombre: 'Salvo Lava Trastes 1.2L', precio: 77, image: 'assets/img/SalvoLavaTrastes1.2L.jpg', cantidad: 1 },
+    { id: 4, nombre: 'Roma Jabón en polvo 1kg', precio: 30, image: 'assets/img/RomaJabónenpolvo1kg.jpg', cantidad: 1 },
+    { id: 5, nombre: 'Foca Jabón en polvo 1kg', precio: 34, image: 'assets/img/FocaJabónenpolvo1kg.jpg', cantidad: 1 },
+    { id: 6, nombre: 'Raid Insecticida 400ml', precio: 79, image: 'assets/img/RaidInsecticida400ml.jpg', cantidad: 1 }
   ];
 
   filteredProducts: Producto[] = [...this.products];

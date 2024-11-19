@@ -23,14 +23,28 @@ export class LoginPage {
   login() {
     const user = this.validUsers.find(u => u.username === this.username && u.password === this.password);
     if (user) {
-      // Guardar el token de autenticación en localStorage
       localStorage.setItem('token', 'user-token');
-      this.navCtrl.navigateRoot('/tabs');
+      this.navCtrl.navigateRoot('/tabs/explorar');
     } else {
       alert('Credenciales incorrectas. Por favor, inténtelo de nuevo.');
     }
   }
+
+  forgotPassword() {
+    alert('Función de olvido de contraseña no implementada.');
+  }
+
+  loginWithGoogle() {
+    alert('Función de inicio de sesión con Google no implementada.');
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
 }
+
+
+
 
 
 

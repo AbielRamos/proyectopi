@@ -1,4 +1,4 @@
-// models/pedido.model.ts
+
 export interface Producto {
   nombre: string;
   precio: number;

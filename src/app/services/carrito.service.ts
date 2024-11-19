@@ -6,7 +6,8 @@ import { Pedido } from '../models/pedido.model';
   providedIn: 'root'
 })
 export class CarritoService {
-  private carrito: Pedido[] = [];
+  private carrito: Pedido[] = []; // Carrito activo
+  private historial: Pedido[] = []; // Historial de pedidos confirmados
 
   constructor() {}
 
@@ -30,8 +31,12 @@ export class CarritoService {
     this.actualizarTotal();
   }
 
-  obtenerCarrito(): Pedido {
-    return this.carrito.length > 0 ? this.carrito[0] : { fecha: '', productos: [], total: 0 };
+  obtenerCarrito(fecha?: string): Pedido {
+    if (fecha) {
+      const pedido = this.carrito.find(p => p.fecha === fecha);
+      return pedido || { fecha: '', productos: [], total: 0 };
+    }
+    return this.carrito.length > 0 ? this.carrito[this.carrito.length - 1] : { fecha: '', productos: [], total: 0 };
   }
 
   vaciarCarrito() {
@@ -55,12 +60,21 @@ export class CarritoService {
     if (!existingPedido) {
       this.carrito.push(pedido);
     } else {
-      existingPedido.productos = pedido.productos;
+      existingPedido.productos = [...pedido.productos];
       existingPedido.total = pedido.total;
     }
   }
-}
 
+  // **Nuevo**: Agregar pedido confirmado al historial
+  agregarAlHistorial(pedido: Pedido) {
+    this.historial.push(pedido);
+  }
+
+  // **Nuevo**: Obtener todos los pedidos del historial
+  obtenerHistorial(): Pedido[] {
+    return this.historial;
+  }
+}
 
 
 

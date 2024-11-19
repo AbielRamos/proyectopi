@@ -7,47 +7,41 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Nombres</ion-label>
-      <ion-input [(ngModel)]="usuario.nombres" placeholder="Nombres"></ion-input>
-    </ion-item>
+  <div class="account-container">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Nombres</ion-label>
+        <ion-input [(ngModel)]="usuario.nombres" placeholder="Nombres"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Apellidos</ion-label>
-      <ion-input [(ngModel)]="usuario.apellidos" placeholder="Apellidos"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Apellidos</ion-label>
+        <ion-input [(ngModel)]="usuario.apellidos" placeholder="Apellidos"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Número de Identidad</ion-label>
-      <ion-input [(ngModel)]="usuario.numeroIdentidad" placeholder="Número de Identidad"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">E-mail</ion-label>
+        <ion-input [(ngModel)]="usuario.email" placeholder="E-mail"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">E-mail</ion-label>
-      <ion-input [(ngModel)]="usuario.email" placeholder="E-mail"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Celular</ion-label>
+        <ion-input [(ngModel)]="usuario.celular" placeholder="Celular"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Celular</ion-label>
-      <ion-input [(ngModel)]="usuario.celular" placeholder="Celular"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Sexo</ion-label>
+        <ion-select [(ngModel)]="usuario.sexo" placeholder="Selecciona uno">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Fecha de Nacimiento</ion-label>
-      <ion-datetime [(ngModel)]="usuario.fechaNacimiento" display-format="YYYY-MM-DD"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Sexo</ion-label>
-      <ion-select [(ngModel)]="usuario.sexo" placeholder="Selecciona uno">
-        <ion-select-option value="masculino">Masculino</ion-select-option>
-        <ion-select-option value="femenino">Femenino</ion-select-option>
-        <ion-select-option value="otro">Otro</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-    <ion-button expand="block" (click)="actualizarPerfil()">Actualizar Perfil</ion-button>
-    <ion-button expand="block" color="danger" (click)="eliminarCuenta()">Eliminar mi cuenta</ion-button>
-  </ion-list>
+      <ion-button expand="block" (click)="actualizarPerfil()">Actualizar Perfil</ion-button>
+      <ion-button expand="block" color="danger" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+      <ion-button expand="block" color="primary" (click)="navegarSeguridad()">Cambiar Contraseña</ion-button>
+    </ion-list>
+  </div>
 </ion-content>
+

@@ -1,13 +1,59 @@
 ion-header {
-    --background: #ff5722;
-    --color: #fff;
-  }
-  
-  ion-content {
-    --ion-background-color: #f8f8f8;
-  }
-  
-  ion-button {
-    margin: 16px;
-  }
-  
+  --background: #ff5722;
+  --color: #fff;
+}
+
+.account-container {
+  padding: 16px;
+}
+
+ion-list {
+  --ion-background-color: transparent;
+}
+
+ion-item {
+  --background: var(--ion-background-color, #f0f0f0) !important; /* Fondo gris */
+  border-radius: 8px;
+  margin-bottom: 16px;
+  --border-color: #dcdcdc; /* Borde gris */
+}
+
+ion-label {
+  color: #ff5722;
+  font-weight: bold;
+}
+
+ion-input,
+ion-select {
+  --background: #f0f0f0 !important; /* Fondo gris */
+  --color: #333 !important; /* Color del texto */
+  --placeholder-color: #888 !important; /* Color del placeholder */
+}
+
+ion-input::part(native),
+ion-select::part(native) {
+  background: #f0f0f0 !important; /* Asegurar el fondo gris */
+  color: #333 !important; /* Color del texto */
+}
+
+ion-button {
+  margin-top: 20px;
+}
+
+ion-button[color="danger"] {
+  --background: #f44336 !important; /* Fondo gris oscuro */
+  --color: #fff;
+}
+
+/* Sobrescribir estilos para `.list-md` */
+.list-md {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #f0f0f0 !important; /* Fondo gris */
+}

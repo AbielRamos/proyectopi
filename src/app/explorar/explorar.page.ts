@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Producto } from '../producto/product.model';
 
@@ -13,7 +13,7 @@ interface Categoria {
   templateUrl: './explorar.page.html',
   styleUrls: ['./explorar.page.scss'],
 })
-export class ExplorarPage {
+export class ExplorarPage implements OnInit {
   categories: Categoria[] = [
     {
       name: 'Botanas',
@@ -58,21 +58,34 @@ export class ExplorarPage {
     {
       name: 'Productos de Limpieza y Aseo',
       image: 'assets/images/limpieza_personal.jpg',
-      products: [
-]
+      products: []
     }
   ];
+  filteredCategories: Categoria[] = [];
 
   constructor(private router: Router) {}
 
-  // Función para navegar al carrito
+  ngOnInit() {
+    this.filteredCategories = this.categories;
+  }
+
+  filterList(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm) {
+      this.filteredCategories = this.categories.filter(category => {
+        return category.name.toLowerCase().includes(searchTerm);
+      });
+    } else {
+      this.filteredCategories = this.categories;
+    }
+  }
+
   navigateToCarrito() {
     this.router.navigate(['/carrito']);
   }
 
-  // Función para navegar a una página específica de categoría
   navigateToCategory(category: Categoria) {
-    const categoryName = category.name.toLowerCase(); // Normaliza a minúsculas
+    const categoryName = category.name.toLowerCase();
     switch (categoryName) {
       case 'lácteos y derivados':
         this.router.navigate(['/lacteos']);
@@ -104,8 +117,9 @@ export class ExplorarPage {
       default:
         console.log('Categoría no encontrada');
     }
-  }   
-}   
+  }
+}
+
 
 
 

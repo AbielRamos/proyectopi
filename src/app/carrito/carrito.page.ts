@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class CarritoPage implements OnInit {
   carrito: Pedido = { fecha: '', productos: [], total: 0 };
   total: number = 0;
+  diaSeleccionado: string = ''; // Almacena el día seleccionado
+  horaSeleccionada: string = ''; // Almacena la hora seleccionada
 
   constructor(private carritoService: CarritoService, private router: Router) {}
 
@@ -51,4 +53,30 @@ export class CarritoPage implements OnInit {
   pedir() {
     this.router.navigate(['/calendario']);
   }
+
+  continuar() {
+    const productosEnCarrito = this.carrito.productos;
+
+    if (productosEnCarrito.length === 0) {
+      alert('Por favor, añade productos al carrito antes de continuar.');
+      return;
+    }
+
+    if (this.diaSeleccionado && this.horaSeleccionada) {
+      const fechaHoraSeleccionada = `${this.diaSeleccionado} ${this.horaSeleccionada}`;
+      const nuevoPedido: Pedido = {
+        fecha: fechaHoraSeleccionada,
+        productos: productosEnCarrito,
+        total: this.total,
+      };
+
+      this.carritoService.agregarPedido(nuevoPedido);
+
+      // Navegación con parámetro dinámico
+      this.router.navigate([`/mi-pedido/${fechaHoraSeleccionada}`]);
+    } else {
+      alert('Por favor, selecciona un día y una hora');
+    }
+  }
 }
+

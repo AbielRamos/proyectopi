@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../services/carrito.service';
 import { Pedido } from '../models/pedido.model';
 
@@ -8,18 +7,22 @@ import { Pedido } from '../models/pedido.model';
   templateUrl: './historial.page.html',
   styleUrls: ['./historial.page.scss'],
 })
-export class HistorialPage {
+export class HistorialPage implements OnInit {
   pedidos: Pedido[] = [];
 
-  constructor(private router: Router, private carritoService: CarritoService) {
-    const carrito = this.carritoService.obtenerCarrito();
-    this.pedidos = carrito.productos.length > 0 ? [carrito] : [];
+  constructor(private carritoService: CarritoService) {}
+
+  ngOnInit() {
+    // Obtener historial y ordenarlo por fecha más reciente
+    this.pedidos = this.carritoService.obtenerHistorial().reverse();
   }
 
   verDetallesPedido(pedido: Pedido) {
-    this.router.navigate(['/mi-pedido', pedido.fecha]);
+    // Opcional: Redirigir a otra página con más detalles del pedido
+    console.log('Pedido seleccionado:', pedido);
   }
 }
+
 
 
 

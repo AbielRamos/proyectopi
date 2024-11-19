@@ -1,35 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuenta',
   templateUrl: './cuenta.page.html',
   styleUrls: ['./cuenta.page.scss'],
 })
-export class CuentaPage implements OnInit {
+export class CuentaPage {
   usuario = {
     nombres: '',
     apellidos: '',
     numeroIdentidad: '',
     email: '',
     celular: '',
-    fechaNacimiento: '',
     sexo: ''
   };
 
-  constructor() { }
-
-  ngOnInit() {
-    // Cargar los datos del usuario aquí si es necesario
-  }
+  constructor(private router: Router, private navCtrl: NavController) {}
 
   actualizarPerfil() {
-    console.log('Perfil actualizado', this.usuario);
     // Lógica para actualizar el perfil del usuario
+    alert('Perfil actualizado.');
   }
 
-  eliminarCuenta() {
-    console.log('Cuenta eliminada');
-    // Lógica para eliminar la cuenta del usuario
+  cerrarSesion() {
+    // Lógica para cerrar sesión
+    localStorage.removeItem('token');
+    this.navCtrl.navigateRoot('/login');
+    alert('Has cerrado sesión.');
   }
+  navegarSeguridad() {
+     this.navCtrl.navigateForward('/seguridad'); }
 }
-

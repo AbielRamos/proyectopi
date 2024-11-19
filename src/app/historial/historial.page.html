@@ -1,40 +1,49 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>¡Bienvenido!</ion-title>
+    <ion-title>¡Historial de Pedidos!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- Banner de Aniversario -->
   <ion-card class="aniversario-banner">
-    <ion-img src="assets/images/cafe.jpg"></ion-img>
+    <ion-img src="assets/images/aniversario.jpg"></ion-img>
   </ion-card>
 
-  <!-- Recordatorios de Pedido -->
+  <!-- Lista de Pedidos en el Historial -->
   <ion-list>
-    <ion-item *ngFor="let pedido of pedidos">
-      <ion-card (click)="verDetallesPedido(pedido)">
-        <ion-card-header>
-          <ion-icon name="time-outline" slot="start"></ion-icon>
-          <ion-card-title>
-            Tu pedido se recoge el: {{ pedido.fecha }}
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item *ngFor="let producto of pedido.productos">
-              <ion-label>
-                Producto: {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio: {{ producto.precio | currency }}
-              </ion-label>
-              <ion-img [src]="producto.image" alt="{{ producto.nombre }}" style="width: 50px; height: auto;"></ion-img>
-            </ion-item>
-          </ion-list>
-          <p>Total: {{ pedido.total | currency }}</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
+    <ion-card *ngFor="let pedido of pedidos; let i = index" (click)="verDetallesPedido(pedido)">
+      <ion-card-header>
+        <ion-icon name="time-outline" slot="start"></ion-icon>
+        <ion-card-title>
+          Pedido #{{ i + 1 }} - Fecha: {{ pedido.fecha }}
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <h3>Productos:</h3>
+        <ion-list>
+          <!-- Lista de Productos del Pedido -->
+          <ion-item *ngFor="let producto of pedido.productos">
+            <ion-label>
+              {{ producto.nombre }}  
+              <br />
+              Cantidad: {{ producto.cantidad }}  
+              <br />
+              Precio: {{ producto.precio | currency }}
+            </ion-label>
+            <ion-img 
+              [src]="producto.image || 'assets/images/default-product.jpg'" 
+              alt="{{ producto.nombre }}" 
+              style="width: 50px; height: auto; margin-left: 10px;">
+            </ion-img>
+          </ion-item>
+        </ion-list>
+        <p><strong>Total:</strong> {{ pedido.total | currency }}</p>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 </ion-content>
+
 
 
 
