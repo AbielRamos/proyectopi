@@ -10,4 +10,5 @@ export interface Pedido {
   fecha: string;
   productos: Producto[];
   total: number;
+  folio?: string;
 }

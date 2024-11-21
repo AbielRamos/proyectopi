@@ -39,10 +39,13 @@
           </ion-item>
         </ion-list>
         <p><strong>Total:</strong> {{ pedido.total | currency }}</p>
+        <!-- Mostrar folio si existe -->
+        <p *ngIf="pedido.folio"><strong>Folio:</strong> {{ pedido.folio }}</p>
       </ion-card-content>
     </ion-card>
   </ion-list>
 </ion-content>
+
 
 
 

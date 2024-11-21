@@ -63,20 +63,26 @@ export class CarritoPage implements OnInit {
     }
 
     if (this.diaSeleccionado && this.horaSeleccionada) {
-      const fechaHoraSeleccionada = `${this.diaSeleccionado} ${this.horaSeleccionada}`;
+      const fechaHoraSeleccionada = `${this.diaSeleccionado.trim()} ${this.horaSeleccionada.trim()}`;
       const nuevoPedido: Pedido = {
         fecha: fechaHoraSeleccionada,
         productos: productosEnCarrito,
         total: this.total,
       };
 
-      this.carritoService.agregarPedido(nuevoPedido);
+      // Agrega el pedido al historial con un folio generado automáticamente
+      this.carritoService.addPedido(nuevoPedido);
 
-      // Navegación con parámetro dinámico
+      // Vacía el carrito después de confirmar el pedido
+      this.carritoService.vaciarCarrito();
+
+      // Navega a la página del pedido con la fecha y folio
       this.router.navigate([`/mi-pedido/${fechaHoraSeleccionada}`]);
     } else {
       alert('Por favor, selecciona un día y una hora');
     }
   }
 }
+
+
 

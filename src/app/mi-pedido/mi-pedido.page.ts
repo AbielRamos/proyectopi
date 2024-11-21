@@ -14,14 +14,27 @@ export class MiPedidoPage implements OnInit {
   constructor(private carritoService: CarritoService, private router: Router) {}
 
   ngOnInit() {
+    // Obtener el pedido actual
     this.pedido = this.carritoService.obtenerCarrito();
+
+    if (!this.pedido || this.pedido.productos.length === 0) {
+      alert('No hay productos en el pedido.');
+      this.router.navigate(['/tabs/carrito']); // Redirige al carrito si no hay pedido
+    }
   }
 
   aceptar() {
-    if (this.pedido) {
-      this.carritoService.agregarAlHistorial(this.pedido);
+    if (this.pedido && this.pedido.productos.length > 0) {
+      // Agregar el pedido al historial con un folio generado automáticamente
+      this.carritoService.addPedido(this.pedido);
+
+      // Vaciar el carrito después de confirmar
       this.carritoService.vaciarCarrito();
-      this.router.navigate(['/historial']);
+
+      // Redirigir al historial
+      this.router.navigate(['/tabs/historial']);
+    } else {
+      alert('No hay un pedido válido para confirmar.');
     }
   }
 }
