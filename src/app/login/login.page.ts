@@ -1,6 +1,8 @@
+// src/app/login/login.page.ts
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +13,18 @@ export class LoginPage {
   username: string = '';
   password: string = '';
 
-  private validUsers = [
-    { username: 'abiel', password: '123456' },
-    { username: 'manuel', password: '123456' },
-    { username: 'valentin', password: '123456' },
-    { username: 'majo', password: '123456' }
-  ];
+  constructor(private router: Router, private navCtrl: NavController, private apiService: ApiService) {}
 
-  constructor(private router: Router, private navCtrl: NavController) {}
-
-  login() {
-    const user = this.validUsers.find(u => u.username === this.username && u.password === this.password);
-    if (user) {
-      localStorage.setItem('token', 'user-token');
-      this.navCtrl.navigateRoot('/tabs/explorar');
-    } else {
-      alert('Credenciales incorrectas. Por favor, inténtelo de nuevo.');
+  async login() {
+    try {
+      const response = await this.apiService.login(this.username, this.password).toPromise();
+      console.log('Inicio de sesión exitoso:', response);
+      // Guardar el token de autenticación en localStorage
+      localStorage.setItem('token', response.token);
+      this.navCtrl.navigateRoot('/tabs');
+    } catch (error) {
+      console.error('Error en el inicio de sesión:', error);
+      alert('Correo o contraseña incorrectos.');
     }
   }
 
@@ -42,11 +40,3 @@ export class LoginPage {
     this.router.navigate(['/register']);
   }
 }
-
-
-
-
-
-
-
-
