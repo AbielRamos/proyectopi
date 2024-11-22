@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -10,15 +10,17 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-  usuario = {
+    usuario = {
     nombres: '',
     apellidos: '',
     email: '',
+    celular: '',
+    direccion: '',
     password: '',
-    confirmPassword: ''
-  };
+    confirmPassword: ''
+  };
 
-  constructor(private navCtrl: NavController, private userService: UserService) {}
+  constructor(private navCtrl: NavController, private apiService: ApiService) {}
 
   register(form: NgForm) {
     if (form.invalid) {
@@ -31,7 +33,7 @@ export class RegisterPage {
     }
 
     // Llamar al servicio de registro
-    this.apiService.registro(this.usuario.nombres, this.usuario.apellidos, this.usuario.email, this.usuario.password)
+    this.apiService.registro(this.usuario.nombres, this.usuario.apellidos, this.usuario.email, this.usuario.password, this.usuario.direccion, this.usuario.celular)
       .subscribe(
         response => {
           console.log('Registro exitoso:', response);
