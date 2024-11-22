@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   private baseUrl = environment.apiUrl; // Asegúrate de que esta URL esté configurada en tu archivo de entorno
@@ -17,10 +17,22 @@ export class ApiService {
     return this.http.post(url, { correo, contrasena });
   }
 
-  registro(nombre: string, apellidos: string, correo: string, contrasena: string): Observable<any> {
+  registro(
+    nombre: string,
+    apellidos: string,
+    correo: string,
+    contrasena: string,
+    direccion: string,
+    telefono: string
+  ): Observable<any> {
     const url = `${this.baseUrl}/registro`;
-    return this.http.post(url, { nombre, apellidos, correo, contrasena });
+    return this.http.post(url, {
+      nombre,
+      apellidos,
+      correo,
+      contrasena,
+      direccion,
+      telefono,
+    });
   }
 }
-
-
