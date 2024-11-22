@@ -1,59 +1,93 @@
 ion-header {
-  --background: #ff5722;
-  --color: #fff;
+  --background: #ff5722; /* Fondo del encabezado */
+  --color: #fff; /* Texto blanco en el encabezado */
+}
+
+ion-content {
+  --background: #ffffff; /* Fondo blanco del contenido */
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
 }
 
 .account-container {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.editable-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.no-data-container {
+  text-align: center;
+  padding: 20px;
 }
 
 ion-list {
-  --ion-background-color: transparent;
+  --ion-background-color: #f5f5f5 !important; /* Cambiar fondo a gris claro */
+  background: #f5f5f5 !important; /* Aplicar fondo también aquí */
+  padding: 8px 0 !important; /* Asegurarse de que el padding se mantenga */
+  border-radius: 8px; /* Opcional: añadir bordes redondeados */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para un mejor diseño */
+}
+
+ion-list.md.list-md.hydrated {
+  --ion-background-color: #f5f5f5 !important; /* Sobrescribir fondo oscuro */
+  background: #f5f5f5 !important; /* Redundante para forzar el fondo */
 }
 
 ion-item {
-  --background: var(--ion-background-color, #f0f0f0) !important; /* Fondo gris */
-  border-radius: 8px;
+  --background: #f5f5f5; /* Fondo gris claro */
+  border-radius: 8px; /* Bordes redondeados */
   margin-bottom: 16px;
-  --border-color: #dcdcdc; /* Borde gris */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  --padding-start: 16px;
+  --padding-end: 16px;
+  transition: transform 0.2s ease-in-out; /* Suaviza la animación de interacción */
+}
+
+ion-item:hover,
+ion-item.ion-focused {
+  transform: translateY(-2px); /* Eleva ligeramente al enfocar */
+  box-shadow: 0px 4px 8px rgba(78, 77, 77, 0.2); /* Sombra más marcada */
 }
 
 ion-label {
-  color: #ff5722;
+  color: #555; /* Color inicial de la etiqueta */
   font-weight: bold;
+  transition: all 0.2s ease-in-out; /* Suaviza el cambio al flotar */
+}
+
+ion-item.ion-focused ion-label {
+  color: #ff5722; /* Color de la etiqueta al enfocar */
 }
 
 ion-input,
 ion-select {
-  --background: #f0f0f0 !important; /* Fondo gris */
-  --color: #333 !important; /* Color del texto */
-  --placeholder-color: #888 !important; /* Color del placeholder */
-}
-
-ion-input::part(native),
-ion-select::part(native) {
-  background: #f0f0f0 !important; /* Asegurar el fondo gris */
-  color: #333 !important; /* Color del texto */
+  --background: transparent; /* Fondo transparente */
+  --color: #333; /* Color del texto */
 }
 
 ion-button {
-  margin-top: 20px;
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(72, 72, 72, 0.1); /* Botones elevados */
 }
 
 ion-button[color="danger"] {
-  --background: #f44336 !important; /* Fondo gris oscuro */
-  --color: #fff;
+  --background: #f44336; /* Botón rojo */
+  --color: #fff; /* Texto blanco */
 }
 
-/* Sobrescribir estilos para `.list-md` */
-.list-md {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background: #f0f0f0 !important; /* Fondo gris */
-}
+
+
+

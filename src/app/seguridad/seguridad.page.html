@@ -1,30 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Seguridad
-    </ion-title>
+    <ion-title class="ion-text-center">Cambiar Contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="security-container">
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">Contraseña Actual</ion-label>
-        <ion-input type="password" placeholder="Contraseña Actual"></ion-input>
-      </ion-item>
+<ion-content class="ion-padding">
+  <form (ngSubmit)="cambiarContrasena()">
+    <ion-item>
+      <ion-label position="stacked">Contraseña Actual</ion-label>
+      <ion-input type="password" [(ngModel)]="contrasenaActual" name="contrasenaActual" required></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="stacked">Nueva Contraseña</ion-label>
-        <ion-input type="password" placeholder="Nueva Contraseña"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nueva Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="nuevaContrasena" name="nuevaContrasena" required></ion-input>
+    </ion-item>
 
-      <ion-item>
-        <ion-label position="stacked">Confirmar Nueva Contraseña</ion-label>
-        <ion-input type="password" placeholder="Confirmar Nueva Contraseña"></ion-input>
-      </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Confirmar Nueva Contraseña</ion-label> <!-- Corrección aquí -->
+      <ion-input type="password" [(ngModel)]="confirmarNuevaContrasena" name="confirmarNuevaContrasena" required></ion-input>
+    </ion-item>
 
-      <ion-button expand="block">Actualizar Contraseña</ion-button>
-    </ion-list>
-  </div>
+    <ion-button expand="block" type="submit">Cambiar Contraseña</ion-button>
+  </form>
 </ion-content>

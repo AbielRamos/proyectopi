@@ -9,23 +9,35 @@ const routes: Routes = [
     children: [
       {
         path: 'explorar',
-        loadChildren: () => import('../explorar/explorar.module').then(m => m.ExplorarPageModule)
+        loadChildren: () =>
+          import('../explorar/explorar.module').then(
+            (m) => m.ExplorarPageModule
+          ),
       },
       {
         path: 'historial',
-        loadChildren: () => import('../historial/historial.module').then(m => m.HistorialPageModule)
+        loadChildren: () =>
+          import('../historial/historial.module').then(
+            (m) => m.HistorialPageModule
+          ),
       },
       {
         path: 'cuenta',
-        loadChildren: () => import('../cuenta/cuenta.module').then(m => m.CuentaPageModule)
+        loadChildren: () =>
+          import('../cuenta/cuenta.module').then((m) => m.CuentaPageModule),
       },
       {
         path: '',
-        redirectTo: '/tabs/explorar',
-        pathMatch: 'full'
-      }
-    ]
-  }
+        redirectTo: 'explorar', // Redirigir por defecto a la pestaña de explorar
+        pathMatch: 'full',
+      },
+    ],
+  },
+  {
+    path: '',
+    redirectTo: '/tabs/explorar', // Asegúrate de redirigir a explorar desde cualquier acceso vacío
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
@@ -33,6 +45,8 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class TabsPageRoutingModule {}
+
+
 
 
 

@@ -1,25 +1,80 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registro</ion-title>
+    <ion-title class="ion-text-center">Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="centered-content">
+<ion-content class="ion-padding">
+  <form (ngSubmit)="register(registerForm)" #registerForm="ngForm">
+    <!-- Campos adicionales para la cuenta -->
     <ion-item>
-      <ion-label position="floating">Nombre de Usuario</ion-label>
-      <ion-input [(ngModel)]="username"></ion-input>
+      <ion-label position="stacked">Nombres</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.nombres" name="nombres" required></ion-input>
     </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['nombres']?.invalid">
+      <p>El nombre es obligatorio.</p>
+    </ion-text>
+
     <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="password" type="password"></ion-input>
+      <ion-label position="stacked">Apellidos</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.apellidos" name="apellidos" required></ion-input>
     </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['apellidos']?.invalid">
+      <p>El apellido es obligatorio.</p>
+    </ion-text>
+
     <ion-item>
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input type="email" [(ngModel)]="usuario.email" name="email" required></ion-input>
     </ion-item>
-    <ion-button expand="full" (click)="register()">Registrarse</ion-button>
-  </div>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['email']?.invalid">
+      <p>El correo electrónico es obligatorio y debe ser válido.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Celular</ion-label>
+      <ion-input type="tel" [(ngModel)]="usuario.celular" name="celular" required pattern="[0-9]{10}"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['celular']?.invalid">
+      <p>El número de celular es obligatorio y debe tener 10 dígitos.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Sexo</ion-label>
+      <ion-select [(ngModel)]="usuario.sexo" name="sexo" placeholder="Selecciona uno" required>
+        <ion-select-option value="masculino">Masculino</ion-select-option>
+        <ion-select-option value="femenino">Femenino</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['sexo']?.invalid">
+      <p>El sexo es obligatorio.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.password" name="password" required minlength="6"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['password']?.invalid">
+      <p>La contraseña es obligatoria y debe tener al menos 6 caracteres.</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="stacked">Confirmar Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.confirmPassword" name="confirmPassword" required minlength="6"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['confirmPassword']?.invalid">
+      <p>La confirmación de la contraseña es obligatoria y debe tener al menos 6 caracteres.</p>
+    </ion-text>
+
+    <ion-text color="danger" *ngIf="usuario.password && usuario.confirmPassword && usuario.password !== usuario.confirmPassword">
+      <p>Las contraseñas no coinciden.</p>
+    </ion-text>
+
+    <ion-button expand="block" type="submit">REGISTRARSE</ion-button>
+  </form>
 </ion-content>
+
+
 
 
