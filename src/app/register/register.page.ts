@@ -1,4 +1,5 @@
 
+
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
@@ -15,7 +16,7 @@ export class RegisterPage {
     apellidos: '',
     email: '',
     celular: '',
-    sexo: '',
+    direccion: '',
     password: '',
     confirmPassword: ''
   };
@@ -33,12 +34,12 @@ export class RegisterPage {
     }
 
     // Llamar al servicio de registro
-    this.apiService.registro(this.usuario.nombres, this.usuario.apellidos, this.usuario.email, this.usuario.password)
+    this.apiService.registro(this.usuario.nombres, this.usuario.apellidos, this.usuario.email, this.usuario.password, this.usuario.direccion, this.usuario.celular)
       .subscribe(
         response => {
           console.log('Registro exitoso:', response);
           alert('Usuario registrado exitosamente.');
-          this.navCtrl.navigateRoot('/cuenta');
+          this.navCtrl.navigateRoot('/login');
         },
         error => {
           console.error('Error en el registro:', error);
@@ -47,6 +48,7 @@ export class RegisterPage {
       );
   }
 }
+
 
 
 

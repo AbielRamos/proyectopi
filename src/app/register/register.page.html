@@ -40,15 +40,11 @@
     </ion-text>
 
     <ion-item>
-      <ion-label position="stacked">Sexo</ion-label>
-      <ion-select [(ngModel)]="usuario.sexo" name="sexo" placeholder="Selecciona uno" required>
-        <ion-select-option value="masculino">Masculino</ion-select-option>
-        <ion-select-option value="femenino">Femenino</ion-select-option>
-        <ion-select-option value="otro">Otro</ion-select-option>
-      </ion-select>
+      <ion-label position="stacked">Dirección</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.direccion" name="direccion" required></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['sexo']?.invalid">
-      <p>El sexo es obligatorio.</p>
+    <ion-text color="danger" *ngIf="registerForm.submitted && registerForm.controls['direccion']?.invalid">
+      <p>La dirección es obligatoria.</p>
     </ion-text>
 
     <ion-item>
@@ -74,7 +70,6 @@
     <ion-button expand="block" type="submit">REGISTRARSE</ion-button>
   </form>
 </ion-content>
-
 
 
 

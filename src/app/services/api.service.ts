@@ -21,9 +21,18 @@ export class ApiService {
     nombre: string,
     apellidos: string,
     correo: string,
-    contrasena: string
+    contrasena: string,
+    direccion: string,
+    telefono: string
   ): Observable<any> {
     const url = `${this.baseUrl}/registro`;
-    return this.http.post(url, { nombre, apellidos, correo, contrasena });
+    return this.http.post(url, {
+      nombre,
+      apellidos,
+      correo,
+      contrasena,
+      direccion,
+      telefono,
+    });
   }
 }
