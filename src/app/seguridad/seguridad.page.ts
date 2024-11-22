@@ -39,3 +39,4 @@ export class SeguridadPage {
     this.navCtrl.navigateForward('/cuenta');
   }
 }
+
