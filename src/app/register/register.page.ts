@@ -14,6 +14,8 @@ export class RegisterPage {
     nombres: '',
     apellidos: '',
     email: '',
+    celular: '',
+    sexo: '',
     password: '',
     confirmPassword: ''
   };
@@ -45,6 +47,7 @@ export class RegisterPage {
       );
   }
 }
+
 
 
 
