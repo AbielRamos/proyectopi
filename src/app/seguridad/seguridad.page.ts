@@ -8,9 +8,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./seguridad.page.scss'],
 })
 export class SeguridadPage {
-  contrasenaActual: string = '';
   nuevaContrasena: string = '';
-  confirmarNuevaContrasena: string = '';
+  confirmarContrasena: string = '';
   usuario: any;
 
   constructor(private navCtrl: NavController, private userService: UserService) {}
@@ -21,13 +20,13 @@ export class SeguridadPage {
   }
 
   cambiarContrasena() {
-    if (this.contrasenaActual !== this.usuario.password) {
-      alert('La contraseña actual no es correcta.');
+    if (!this.nuevaContrasena || !this.confirmarContrasena || this.nuevaContrasena.length < 6) {
+      alert('Por favor, completa todos los campos. La nueva contraseña debe tener al menos 6 caracteres.');
       return;
     }
 
-    if (this.nuevaContrasena !== this.confirmarNuevaContrasena) {
-      alert('Las nuevas contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+    if (this.nuevaContrasena !== this.confirmarContrasena) {
+      alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
       return;
     }
 
