@@ -7,18 +7,13 @@
 <ion-content class="ion-padding">
   <form (ngSubmit)="cambiarContrasena()">
     <ion-item>
-      <ion-label position="stacked">Contraseña Actual</ion-label>
-      <ion-input type="password" [(ngModel)]="contrasenaActual" name="contrasenaActual" required></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Nueva Contraseña</ion-label>
+      <ion-label position="stacked">Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="nuevaContrasena" name="nuevaContrasena" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Confirmar Nueva Contraseña</ion-label> <!-- Corrección aquí -->
-      <ion-input type="password" [(ngModel)]="confirmarNuevaContrasena" name="confirmarNuevaContrasena" required></ion-input>
+      <ion-label position="stacked">Confirmar Contraseña</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmarContrasena" name="confirmarContrasena" required></ion-input>
     </ion-item>
 
     <ion-button expand="block" type="submit">Cambiar Contraseña</ion-button>

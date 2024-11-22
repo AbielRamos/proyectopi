@@ -11,6 +11,12 @@ ion-header {
     }
   }
   
+  ion-list.md.list-md.hydrated {
+    background: #808080; /* Color gris */
+    padding: 8px 0px;
+}
+
+
   ion-content {
     --background: #f3f4f6;
   
