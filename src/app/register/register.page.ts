@@ -1,8 +1,7 @@
-
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
-import { ApiService } from '../services/api.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -14,11 +13,13 @@ export class RegisterPage {
     nombres: '',
     apellidos: '',
     email: '',
+    celular: '',       // Agregando propiedad celular
+    sexo: '',          // Agregando propiedad sexo
     password: '',
     confirmPassword: ''
   };
 
-  constructor(private navCtrl: NavController, private apiService: ApiService) {}
+  constructor(private navCtrl: NavController, private userService: UserService) {}
 
   register(form: NgForm) {
     if (form.invalid) {
@@ -30,21 +31,19 @@ export class RegisterPage {
       return;
     }
 
-    // Llamar al servicio de registro
-    this.apiService.registro(this.usuario.nombres, this.usuario.apellidos, this.usuario.email, this.usuario.password)
-      .subscribe(
-        response => {
-          console.log('Registro exitoso:', response);
-          alert('Usuario registrado exitosamente.');
-          this.navCtrl.navigateRoot('/cuenta');
-        },
-        error => {
-          console.error('Error en el registro:', error);
-          alert('Hubo un error en el registro. Por favor, inténtalo de nuevo.');
-        }
-      );
+    // Guardar los datos del usuario en el servicio compartido
+    this.userService.setUsuario(this.usuario);
+  
+    // Confirmar que los datos se guardaron correctamente
+    console.log('Usuario registrado en el servicio:', this.userService.getUsuario());
+    
+    alert('Usuario registrado exitosamente.');
+  
+    // Redirigir al usuario a la página de cuenta
+    this.navCtrl.navigateRoot('/cuenta');
   }
 }
+
 
 
 
