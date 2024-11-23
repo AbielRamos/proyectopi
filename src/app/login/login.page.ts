@@ -1,4 +1,3 @@
-// src/app/login/login.page.ts
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -20,8 +19,9 @@ export class LoginPage {
     try {
       const response = await this.apiService.login(this.username, this.password).toPromise();
       console.log('Inicio de sesión exitoso:', response);
-      // Guardar el token de autenticación en localStorage
+      // Guardar el token de autenticación y el ID del usuario en localStorage
       localStorage.setItem('token', response.token);
+      localStorage.setItem('userId', response.cliente.id);
       this.navCtrl.navigateRoot('/tabs');
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
