@@ -9,104 +9,62 @@
 
 <ion-content>
   <!-- Verificar si hay datos del usuario -->
-  <div *ngIf="usuario && hasKeys(usuario); else noDatos" class="account-container">
+  <div *ngIf="usuario && hasKeys(usuario)">
     <ion-list>
       <!-- Nombres -->
       <ion-item>
         <ion-label position="stacked">Nombres</ion-label>
-        <div class="editable-field">
-          <ion-input [(ngModel)]="usuario.nombres" [readonly]="!editNombres"></ion-input>
-          <ion-button fill="clear" size="small" slot="end" (click)="toggleEdit('nombres')">
-            <ion-icon [name]="editNombres ? 'checkmark-outline' : 'create-outline'"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-input [(ngModel)]="usuario.nombre"></ion-input>
       </ion-item>
 
       <!-- Apellidos -->
       <ion-item>
         <ion-label position="stacked">Apellidos</ion-label>
-        <div class="editable-field">
-          <ion-input [(ngModel)]="usuario.apellidos" [readonly]="!editApellidos"></ion-input>
-          <ion-button fill="clear" size="small" slot="end" (click)="toggleEdit('apellidos')">
-            <ion-icon [name]="editApellidos ? 'checkmark-outline' : 'create-outline'"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-input [(ngModel)]="usuario.apellidos"></ion-input>
       </ion-item>
 
-      <!-- Email -->
+      <!-- Email (No editable) -->
       <ion-item>
         <ion-label position="stacked">E-mail</ion-label>
-        <div class="editable-field">
-          <ion-input [(ngModel)]="usuario.email" [readonly]="!editEmail" type="email"></ion-input>
-          <ion-button fill="clear" size="small" slot="end" (click)="toggleEdit('email')">
-            <ion-icon [name]="editEmail ? 'checkmark-outline' : 'create-outline'"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-input [(ngModel)]="usuario.correo" readonly type="email"></ion-input>
       </ion-item>
 
       <!-- Celular -->
       <ion-item>
         <ion-label position="stacked">Celular</ion-label>
-        <div class="editable-field">
-          <ion-input [(ngModel)]="usuario.celular" [readonly]="!editCelular" type="tel"></ion-input>
-          <ion-button fill="clear" size="small" slot="end" (click)="toggleEdit('celular')">
-            <ion-icon [name]="editCelular ? 'checkmark-outline' : 'create-outline'"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-input [(ngModel)]="usuario.telefono" type="tel"></ion-input>
+      </ion-item>
+
+      <!-- Dirección -->
+      <ion-item>
+        <ion-label position="stacked">Dirección</ion-label>
+        <ion-input [(ngModel)]="usuario.direccion"></ion-input>
       </ion-item>
 
       <!-- Sexo -->
       <ion-item>
         <ion-label position="stacked">Sexo</ion-label>
-        <div class="editable-field">
-          <ion-select [(ngModel)]="usuario.sexo" [disabled]="!editSexo">
-            <ion-select-option value="masculino">Masculino</ion-select-option>
-            <ion-select-option value="femenino">Femenino</ion-select-option>
-            <ion-select-option value="otro">Otro</ion-select-option>
-          </ion-select>
-          <ion-button fill="clear" size="small" slot="end" (click)="toggleEdit('sexo')">
-            <ion-icon [name]="editSexo ? 'checkmark-outline' : 'create-outline'"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-select [(ngModel)]="usuario.sexo">
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="otro">Otro</ion-select-option>
+        </ion-select>
       </ion-item>
 
-      <!-- Contraseña -->
+      <!-- Contraseña (No editable) -->
       <ion-item>
         <ion-label position="stacked">Contraseña</ion-label>
-        <div class="editable-field">
-          <ion-input type="password" value="******" readonly></ion-input>
-          <ion-button fill="clear" size="small" slot="end" (click)="navegarSeguridad()">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
-        </div>
+        <ion-input type="password" value="******" readonly></ion-input>
+        <ion-button fill="clear" size="small" slot="end" (click)="navegarSeguridad()">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
       </ion-item>
     </ion-list>
 
-    <!-- Botones de acción -->
+    <!-- Botón de Actualizar -->
+    <ion-button expand="block" color="primary" (click)="actualizarPerfil()">Actualizar</ion-button>
+
+    <!-- Botón de Cerrar Sesión -->
     <ion-button expand="block" color="danger" (click)="cerrarSesion()">Cerrar Sesión</ion-button>
   </div>
-
-  <!-- Plantilla alternativa para cuando no hay datos del usuario -->
-  <ng-template #noDatos>
-    <div class="no-data-container">
-      <p>No hay datos del usuario. Por favor, inicia sesión nuevamente.</p>
-      <ion-button expand="block" color="primary" (click)="cerrarSesion()">Ir al Login</ion-button>
-    </div>
-  </ng-template>
 </ion-content>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

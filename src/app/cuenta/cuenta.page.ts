@@ -9,13 +9,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./cuenta.page.scss'],
 })
 export class CuentaPage implements OnInit {
-  [key: string]: any; // Permite propiedades dinámicas para campos de edición
   usuario: any; // Información del usuario
-  editNombres = false;
-  editApellidos = false;
-  editEmail = false;
-  editCelular = false;
-  editSexo = false;
 
   constructor(
     private navCtrl: NavController,
@@ -24,8 +18,9 @@ export class CuentaPage implements OnInit {
     private cdr: ChangeDetectorRef // Inyectar ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
-    // Obtener los datos del usuario desde el servicio
+  async ngOnInit() {
+    // Cargar los datos del usuario desde el servicio
+    await this.userService.cargarUsuario();
     this.usuario = this.userService.getUsuario();
 
     if (!this.usuario || Object.keys(this.usuario).length === 0) {
@@ -43,19 +38,6 @@ export class CuentaPage implements OnInit {
     return Object.keys(obj).length > 0;
   }
 
-  // Cambiar el modo de edición de los campos
-  toggleEdit(campo: string) {
-    const campoEditar = `edit${campo.charAt(0).toUpperCase() + campo.slice(1)}`;
-    this[campoEditar] = !this[campoEditar];
-
-    // Guardar cambios cuando se termine la edición de un campo
-    if (!this[campoEditar]) {
-      this.actualizarPerfil(false);
-    }
-
-    this.cdr.detectChanges(); // Forzar la detección de cambios
-  }
-
   // Mostrar un mensaje emergente (toast)
   async mostrarToast(mensaje: string, color: string = 'success') {
     const toast = await this.toastController.create({
@@ -68,15 +50,21 @@ export class CuentaPage implements OnInit {
   }
 
   // Actualizar los datos del perfil del usuario
-  actualizarPerfil(mostrarMensaje = true) {
-    if (!this.usuario.nombres || !this.usuario.apellidos || !this.usuario.email || !this.usuario.celular || !this.usuario.sexo) {
-      this.mostrarToast('Por favor, completa todos los campos obligatorios.', 'danger');
-      return;
-    }
+  async actualizarPerfil() {
+    const datosActualizados: any = {};
 
-    this.userService.setUsuario(this.usuario);
-    if (mostrarMensaje) {
+    if (this.usuario.nombre) datosActualizados.nombre = this.usuario.nombre;
+    if (this.usuario.apellidos) datosActualizados.apellidos = this.usuario.apellidos;
+    if (this.usuario.telefono) datosActualizados.telefono = this.usuario.telefono;
+    if (this.usuario.direccion) datosActualizados.direccion = this.usuario.direccion;
+    if (this.usuario.sexo) datosActualizados.sexo = this.usuario.sexo;
+
+    try {
+      await this.userService.actualizarUsuario(datosActualizados);
       this.mostrarToast('Perfil actualizado exitosamente.', 'success');
+    } catch (error) {
+      console.error('Error al actualizar el perfil:', error);
+      this.mostrarToast('Error al actualizar el perfil.', 'danger');
     }
 
     // Redirigir al usuario a la página de tabs después de actualizar el perfil
@@ -96,15 +84,3 @@ export class CuentaPage implements OnInit {
     this.navCtrl.navigateRoot('/login');
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
