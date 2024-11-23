@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { GoogleAuthService } from '../services/google.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginPage {
   username: string = '';
   password: string = '';
 
-  constructor(private router: Router, private navCtrl: NavController, private apiService: ApiService) {}
+  constructor(private router: Router, private navCtrl: NavController, private apiService: ApiService, private googleAuthService: GoogleAuthService) {}
 
   async login() {
     try {
@@ -32,8 +33,18 @@ export class LoginPage {
     alert('Función de olvido de contraseña no implementada.');
   }
 
-  loginWithGoogle() {
-    alert('Función de inicio de sesión con Google no implementada.');
+  async loginWithGoogle() {
+    try {
+      const userData = await this.googleAuthService.signInWithGoogle();
+      console.log('Inicio de sesión con Google exitoso:', userData);
+      // Guarda el token en el localStorage o en el backend
+      localStorage.setItem('google_token', userData.token);
+      // Navega a otra página después del inicio de sesión exitoso
+      this.router.navigate(['/tabs']);
+    } catch (error) {
+      console.error('Error al intentar iniciar sesión con Google:', error);
+      alert('Error al intentar iniciar sesión con Google');
+    }
   }
 
   navigateToRegister() {
