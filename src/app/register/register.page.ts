@@ -1,5 +1,4 @@
 
-
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
@@ -11,15 +10,15 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-  usuario = {
+    usuario = {
     nombres: '',
     apellidos: '',
     email: '',
     celular: '',
     direccion: '',
     password: '',
-    confirmPassword: ''
-  };
+    confirmPassword: ''
+  };
 
   constructor(private navCtrl: NavController, private apiService: ApiService) {}
 
@@ -39,7 +38,7 @@ export class RegisterPage {
         response => {
           console.log('Registro exitoso:', response);
           alert('Usuario registrado exitosamente.');
-          this.navCtrl.navigateRoot('/login');
+          this.navCtrl.navigateRoot('/cuenta');
         },
         error => {
           console.error('Error en el registro:', error);
@@ -48,8 +47,6 @@ export class RegisterPage {
       );
   }
 }
-
-
 
 
 
